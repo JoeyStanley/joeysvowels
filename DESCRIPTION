@@ -7,12 +7,11 @@ Authors@R:
            role = c("aut", "cre"),
            email = "joey_stanley@byu.edu",
            comment = c(ORCID = "0000-0002-9185-0048"))
-Description: This package contains various datasets containing formant
-formant frequencies extracted from my own speech. The purpose of the package is
-to have easy access to vowel data in various formants to demonstrate code 
-designed for vowel data. However, you may use the data however you like.
+Description: This package contains various datasets containing formant formant frequencies extracted from my own speech. The purpose of the package is to have easy access to vowel data in various formants to demonstrate code designed for vowel data. However, you may use the data however you like.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Depends: 
+    R (>= 2.10)
