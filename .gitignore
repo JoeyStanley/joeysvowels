@@ -44,5 +44,3 @@ vignettes/*.pdf
 .Renviron
 .Rproj.user
 .Rbuildignore
-
-docs
