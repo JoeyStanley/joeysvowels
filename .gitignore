@@ -1,6 +1,7 @@
 *.DS_Store
 data-raw
 sandbox*
+README.Rmd
 
 # History files
 .Rhistory
@@ -44,3 +45,4 @@ vignettes/*.pdf
 .Rproj.user
 .Rbuildignore
 
+docs
