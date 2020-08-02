@@ -68,7 +68,19 @@ datasets.
 library(joeysvowels)
 library(ggplot2)
 library(tidyr)
+library(dplyr)
 ```
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
 
 The `darla` dataset is messy.
 
@@ -85,15 +97,41 @@ ggplot(darla, aes(F2, F1, color = vowel)) +
 The `coronals` trajectories show clear influence from the surrounding
 consonants.
 
-    data(coronals)
-    avg_trajs <- coronals %>%
-      group_by(vowel, percent) %>%
-      summarize(across(c(F1, F2), mean)) %>%
-      print()
-    ggplot(avg_trajs, aes(F2, F1, color = vowel)) + 
-      geom_path(aes(group = vowel)) + 
-      scale_x_reverse() + 
-      scale_y_reverse()
+``` r
+data(coronals)
+avg_trajs <- coronals %>%
+  group_by(vowel, percent) %>%
+  summarize(across(c(F1, F2), mean)) %>%
+  print()
+```
+
+    ## `summarise()` regrouping output by 'vowel' (override with `.groups` argument)
+
+    ## # A tibble: 273 x 4
+    ## # Groups:   vowel [13]
+    ##    vowel percent    F1    F2
+    ##    <fct>   <dbl> <dbl> <dbl>
+    ##  1 LOT         0  454. 1616.
+    ##  2 LOT         5  592. 1346.
+    ##  3 LOT        10  648. 1283.
+    ##  4 LOT        15  651. 1238.
+    ##  5 LOT        20  661. 1178.
+    ##  6 LOT        25  651. 1176.
+    ##  7 LOT        30  636. 1152.
+    ##  8 LOT        35  630. 1148.
+    ##  9 LOT        40  633. 1153.
+    ## 10 LOT        45  625. 1158.
+    ## # … with 263 more rows
+
+``` r
+ggplot(avg_trajs, aes(F2, F1, color = vowel)) + 
+  geom_path(aes(group = vowel), 
+            arrow = arrow(angle = 20, length = unit(0.15, "in"), type = "closed")) + 
+  scale_x_reverse() + 
+  scale_y_reverse()
+```
+
+![](man/figures/coronals%20plot-1.png)<!-- -->
 
 `midpoints` is pretty clean.
 
