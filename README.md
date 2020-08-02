@@ -55,22 +55,26 @@ great for demonstrating functions and visuals involving vowel trajectories.
 
 ## Example
 
-You can access the datasets using `data()`:
+You can access the datasets using `data()`. I'll briefly visualize the datasets.
 
 ``` r
 library(joeysvowels)
 library(ggplot2)
 library(tidyr)
+```
 
-# The darla dataset is messy
+The `darla` dataset is messy
+```r
 data(darla)
 ggplot(darla, aes(F2, F1, color = vowel)) + 
   geom_point() + 
   scale_x_reverse() + 
   scale_y_reverse()
+```
 
-# The coronals trajectories show clear influence from the surrounding consonants.
-library(tidyr)
+The `coronals` trajectories show clear influence from the surrounding consonants.
+
+```
 data(coronals)
 avg_trajs <- coronals %>%
   group_by(vowel, percent) %>%
@@ -80,17 +84,33 @@ ggplot(avg_trajs, aes(F2, F1, color = vowel)) +
   geom_path(aes(group = vowel)) + 
   scale_x_reverse() + 
   scale_y_reverse()
+```
 
-# The midpoints are pretty clean.
+`midpoints` is pretty clean.
+
+```r
 data(midpoints)
 ggplot(midpoints, aes(F2, F1, color = vowel)) + 
   geom_point() + 
   scale_x_reverse() + 
   scale_y_reverse()
+```
 
-# The mouth dataset shows pretty good trajectories.
+`mouth` shows pretty good trajectories
+
+```r
 data(mouth)
 ggplot(mouth, aes(percent, hz, color = formant)) + 
   geom_path(aes(group = traj_id))
 ```
+
+`mouth_lite` is just smaller
+
+
+```r
+data(mouth_lite)
+ggplot(mouth_lite, aes(percent, hz, color = formant)) + 
+  geom_path(aes(group = traj_id))
+```
+
 
