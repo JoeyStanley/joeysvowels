@@ -1,0 +1,6 @@
+template:
+  params:
+    bootswatch: flatly
+    ganalytics: UA-86802921-2
+development:
+  mode: unreleased
