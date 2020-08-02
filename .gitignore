@@ -1,4 +1,6 @@
-
+*.DS_Store
+data-raw
+sandbox*
 
 # History files
 .Rhistory
