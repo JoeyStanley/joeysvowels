@@ -63,7 +63,8 @@ library(ggplot2)
 library(tidyr)
 ```
 
-The `darla` dataset is messy
+The `darla` dataset is messy.
+
 ```r
 data(darla)
 ggplot(darla, aes(F2, F1, color = vowel)) + 
@@ -96,7 +97,7 @@ ggplot(midpoints, aes(F2, F1, color = vowel)) +
   scale_y_reverse()
 ```
 
-`mouth` shows pretty good trajectories
+`mouth` shows pretty good trajectories.
 
 ```r
 data(mouth)
@@ -104,7 +105,7 @@ ggplot(mouth, aes(percent, hz, color = formant)) +
   geom_path(aes(group = traj_id))
 ```
 
-`mouth_lite` is just smaller
+`mouth_lite` is just smaller.
 
 
 ```r
