@@ -9,6 +9,7 @@ Authors@R:
            comment = c(ORCID = "0000-0002-9185-0048"))
 Description: This package contains various datasets containing formant formant frequencies extracted from my own speech. The purpose of the package is to have easy access to vowel data in various formants to demonstrate code designed for vowel data. However, you may use the data however you like.
 Date: 2020-08-01
+URL: https://joeystanley.github.io/joeysvowels/, https://github.com/JoeyStanley/joeysvowels/
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
