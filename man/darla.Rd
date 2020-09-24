@@ -6,7 +6,7 @@
 \title{Vowel formants produced by DARLA and FAVE}
 \format{
 A dataframe with 3,504 rows and 43 variables. There are probably
-better explanations of these variables elsewere on the internet, but here's
+better explanations of these variables elsewhere on the internet, but here's
 my description:
 \describe{
 \item{name}{speaker name. Since this is just my data, it's just "joey"}
