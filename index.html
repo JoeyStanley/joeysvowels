@@ -97,7 +97,7 @@
 <div id="contents" class="section level2">
 <h2 class="hasAnchor">
 <a href="#contents" class="anchor"></a>Contents</h2>
-<p>Currently, there are five datasets contained in <code>joeysvowels</code>:</p>
+<p>Currently, there are six datasets contained in <code>joeysvowels</code>:</p>
 <ul>
 <li><p><code>darla</code> is one that was prepared using pretty standard methods, using the DARLA web interface to automatically transcribe, force-align, and extract formants from the audio. The audio was me reading 300 prepared sentences. It’s a bit of a noisy dataset, so it’s a good example of working with real data. It is also very close to the format that FAVE exports its data, so any examples that use <code>darla</code> can be easily modified to another FAVE-produced spreadsheet.</p></li>
 <li>
@@ -108,6 +108,7 @@
 <li><p><code>mouth_lite</code> is a subset of <code>mouth</code> and trims away most of the columns and only contains 10 tokens.</p></li>
 </ul>
 </li>
+<li><p><code>idahoans</code> contains formant measurements from 11 individuals from the state of Idaho in the US. This is great for testing normalization functions.</p></li>
 </ul>
 </div>
 <div id="example" class="section level2">
@@ -120,18 +121,8 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw">tidyr</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw">dplyr</span>)
 </pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">## </span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="co">## Attaching package: 'dplyr'</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co">## The following objects are masked from 'package:stats':</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co">## </span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="co">##     filter, lag</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="co">## The following objects are masked from 'package:base':</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="co">## </span></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="co">##     intersect, setdiff, setequal, union</span></span></code></pre></div>
 <p>The <code>darla</code> dataset is messy.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
+<div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="kw">darla</span>)
 <span class="fu">ggplot</span>(<span class="kw">darla</span>, <span class="fu">aes</span>(<span class="kw">F2</span>, <span class="kw">F1</span>, color = <span class="kw">vowel</span>)) <span class="op">+</span> 
   <span class="fu">geom_point</span>() <span class="op">+</span> 
@@ -140,31 +131,31 @@
 </pre></div>
 <p><img src="reference/figures/darla%20plot-1.png"><!-- --></p>
 <p>The <code>coronals</code> trajectories show clear influence from the surrounding consonants.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
+<div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="kw">coronals</span>)
 <span class="kw">avg_trajs</span> <span class="op">&lt;-</span> <span class="kw">coronals</span> <span class="op">%&gt;%</span>
   <span class="fu">group_by</span>(<span class="kw">vowel</span>, <span class="kw">percent</span>) <span class="op">%&gt;%</span>
   <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">F1</span>, <span class="kw">F2</span>), <span class="kw">mean</span>)) <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>()
 </pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">## `summarise()` regrouping output by 'vowel' (override with `.groups` argument)</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="co">## # A tibble: 273 x 4</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="co">## # Groups:   vowel [13]</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="co">##    vowel percent    F1    F2</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="co">##    &lt;fct&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="co">##  1 LOT         0  454. 1616.</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="co">##  2 LOT         5  592. 1346.</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="co">##  3 LOT        10  648. 1283.</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="co">##  4 LOT        15  651. 1238.</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="co">##  5 LOT        20  661. 1178.</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a><span class="co">##  6 LOT        25  651. 1176.</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a><span class="co">##  7 LOT        30  636. 1152.</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a><span class="co">##  8 LOT        35  630. 1148.</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a><span class="co">##  9 LOT        40  633. 1153.</span></span>
-<span id="cb7-16"><a href="#cb7-16"></a><span class="co">## 10 LOT        45  625. 1158.</span></span>
-<span id="cb7-17"><a href="#cb7-17"></a><span class="co">## # … with 263 more rows</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit">
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">## `summarise()` regrouping output by 'vowel' (override with `.groups` argument)</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co">## # A tibble: 273 x 4</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">## # Groups:   vowel [13]</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">##    vowel percent    F1    F2</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co">##    &lt;fct&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co">##  1 LOT         0  454. 1616.</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="co">##  2 LOT         5  592. 1346.</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co">##  3 LOT        10  648. 1283.</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="co">##  4 LOT        15  651. 1238.</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co">##  5 LOT        20  661. 1178.</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">##  6 LOT        25  651. 1176.</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">##  7 LOT        30  636. 1152.</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">##  8 LOT        35  630. 1148.</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="co">##  9 LOT        40  633. 1153.</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="co">## 10 LOT        45  625. 1158.</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="co">## # … with 263 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="fu">ggplot</span>(<span class="kw">avg_trajs</span>, <span class="fu">aes</span>(<span class="kw">F2</span>, <span class="kw">F1</span>, color = <span class="kw">vowel</span>)) <span class="op">+</span> 
   <span class="fu">geom_path</span>(<span class="fu">aes</span>(group = <span class="kw">vowel</span>), 
             arrow = <span class="fu">arrow</span>(angle = <span class="fl">20</span>, length = <span class="fu">unit</span>(<span class="fl">0.15</span>, <span class="st">"in"</span>), type = <span class="st">"closed"</span>)) <span class="op">+</span> 
@@ -173,7 +164,7 @@
 </pre></div>
 <p><img src="reference/figures/coronals%20plot-1.png"><!-- --></p>
 <p><code>midpoints</code> is pretty clean.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
+<div class="sourceCode" id="cb8"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="kw">midpoints</span>)
 <span class="fu">ggplot</span>(<span class="kw">midpoints</span>, <span class="fu">aes</span>(<span class="kw">F2</span>, <span class="kw">F1</span>, color = <span class="kw">vowel</span>)) <span class="op">+</span> 
   <span class="fu">geom_point</span>() <span class="op">+</span> 
@@ -182,19 +173,28 @@
 </pre></div>
 <p><img src="reference/figures/midpoints%20plot-1.png"><!-- --></p>
 <p><code>mouth</code> shows pretty good trajectories.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
+<div class="sourceCode" id="cb9"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="kw">mouth</span>)
 <span class="fu">ggplot</span>(<span class="kw">mouth</span>, <span class="fu">aes</span>(<span class="kw">percent</span>, <span class="kw">hz</span>, color = <span class="kw">formant</span>)) <span class="op">+</span> 
   <span class="fu">geom_path</span>(<span class="fu">aes</span>(group = <span class="kw">traj_id</span>))
 </pre></div>
 <p><img src="reference/figures/mouth%20plot-1.png"><!-- --></p>
 <p><code>mouth_lite</code> is just smaller.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
+<div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="kw">mouth_lite</span>)
 <span class="fu">ggplot</span>(<span class="kw">mouth_lite</span>, <span class="fu">aes</span>(<span class="kw">percent</span>, <span class="kw">hz</span>, color = <span class="kw">formant</span>)) <span class="op">+</span> 
   <span class="fu">geom_path</span>(<span class="fu">aes</span>(group = <span class="kw">traj_id</span>))
 </pre></div>
 <p><img src="reference/figures/mouth_lite%20plot-1.png"><!-- --></p>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="kw">idahoans</span>)
+<span class="fu">ggplot</span>(<span class="kw">idahoans</span>, <span class="fu">aes</span>(<span class="kw">F2</span>, <span class="kw">F1</span>, color = <span class="kw">vowel</span>)) <span class="op">+</span> 
+  <span class="fu">geom_point</span>() <span class="op">+</span> 
+  <span class="fu">scale_x_reverse</span>() <span class="op">+</span> 
+  <span class="fu">scale_y_reverse</span>() <span class="op">+</span> 
+  <span class="fu">facet_wrap</span>(<span class="op">~</span><span class="kw">speaker</span>)
+</pre></div>
+<p><img src="reference/figures/idahoans%20plot-1.png"><!-- --></p>
 </div>
 </div>
   </div>
