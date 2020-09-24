@@ -52,7 +52,7 @@
 #'   Dictionary}, it uses ARPABET for transcription of the vowels. This is a
 #'   handy transcription system since all General American English vowels are
 #'   represented using two-letter codes.}
-#'   \item Other columns will be added later.
+#'   \item{Other columns will be added later.}
 #' }
 "darla"
 
