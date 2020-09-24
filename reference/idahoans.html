@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • joeysvowels</title>
+<title>Vowel formants from 11 Idahoans — idahoans • joeysvowels</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,14 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Vowel formants from 11 Idahoans — idahoans" />
+<meta property="og:description" content="A dataset containing information on 1,210 vowel tokens produced by 11 people
+from the state of Idaho in the United States. For each speaker, there are
+ten tokens per canonical monophthong, randomly selected from a larger
+dataset. Vowels are not preceding sonorants and not following coronal
+consonants. For each token, F1, F2, F3, and F4 were extracted at the midpoint
+of each vowel using a Praat script. The individuals consented to their data
+being used in this way." />
 
 
 
@@ -68,7 +75,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -120,26 +127,46 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/JoeyStanley/joeysvowels/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Vowel formants from 11 Idahoans</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JoeyStanley/joeysvowels/blob/master/R/idahoans.R'><code>R/idahoans.R</code></a></small>
+    <div class="hidden name"><code>idahoans.Rd</code></div>
     </div>
 
-    <div id="joeysvowels-010" class="section level1">
-<h1 class="page-header" data-toc-text="0.1.0">
-<a href="#joeysvowels-010" class="anchor"></a>joeysvowels 0.1.0</h1>
-<ul>
-<li>Created the package</li>
-<li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
-</ul>
-</div>
-  </div>
+    <div class="ref-description">
+    <p>A dataset containing information on 1,210 vowel tokens produced by 11 people
+from the state of Idaho in the United States. For each speaker, there are
+ten tokens per canonical monophthong, randomly selected from a larger
+dataset. Vowels are not preceding sonorants and not following coronal
+consonants. For each token, F1, F2, F3, and F4 were extracted at the midpoint
+of each vowel using a Praat script. The individuals consented to their data
+being used in this way.</p>
+    </div>
 
+    <pre class="usage"><span class='kw'>idahoans</span></pre>
+
+
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A dataframe with 1,210 rows and 7 variables.</p><dl>
+<dt>speaker</dt><dd><p>a unique identifier per speaker</p></dd>
+<dt>sex</dt><dd><p>biological sex of the speakers</p></dd>
+<dt>vowel</dt><dd><p>vowel, in ARPABET. This is a handy transcription system since
+all General American English vowels are represented using two-letter codes.</p></dd>
+<dt>F1, F2, F3, F4</dt><dd><p>vowel formant measurements, in Hz</p></dd>
+
+</dl>
+
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This dataset is useful for testing and demonstrating vowel normalization
+functions.</p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
 
 

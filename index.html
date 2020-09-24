@@ -86,9 +86,13 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install <code>joeysvowels</code> through GitHub:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"joeystanley/joeysvowels"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"joeystanley/joeysvowels"</span>)
+</pre></div>
 <p>You can then load the package like noromally:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">joeysvowels</span>)</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://joeystanley.github.io/joeysvowels">joeysvowels</a></span>)
+</pre></div>
 </div>
 <div id="contents" class="section level2">
 <h2 class="hasAnchor">
@@ -110,10 +114,12 @@
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>You can access the datasets using <code><a href="https://rdrr.io/r/utils/data.html">data()</a></code>. I’ll briefly visualize the datasets.</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">joeysvowels</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tidyr</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)</pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://joeystanley.github.io/joeysvowels">joeysvowels</a></span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw">ggplot2</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw">tidyr</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw">dplyr</span>)
+</pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">## </span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="co">## Attaching package: 'dplyr'</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a></span>
@@ -125,18 +131,22 @@
 <span id="cb4-9"><a href="#cb4-9"></a><span class="co">## </span></span>
 <span id="cb4-10"><a href="#cb4-10"></a><span class="co">##     intersect, setdiff, setequal, union</span></span></code></pre></div>
 <p>The <code>darla</code> dataset is messy.</p>
-<div class="sourceCode" id="cb5"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">darla</span>)
-<span class="fu">ggplot</span>(<span class="no">darla</span>, <span class="fu">aes</span>(<span class="no">F2</span>, <span class="no">F1</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">vowel</span>)) +
-  <span class="fu">geom_point</span>() +
-  <span class="fu">scale_x_reverse</span>() +
-  <span class="fu">scale_y_reverse</span>()</pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="kw">darla</span>)
+<span class="fu">ggplot</span>(<span class="kw">darla</span>, <span class="fu">aes</span>(<span class="kw">F2</span>, <span class="kw">F1</span>, color = <span class="kw">vowel</span>)) <span class="op">+</span> 
+  <span class="fu">geom_point</span>() <span class="op">+</span> 
+  <span class="fu">scale_x_reverse</span>() <span class="op">+</span> 
+  <span class="fu">scale_y_reverse</span>()
+</pre></div>
 <p><img src="reference/figures/darla%20plot-1.png"><!-- --></p>
 <p>The <code>coronals</code> trajectories show clear influence from the surrounding consonants.</p>
-<div class="sourceCode" id="cb6"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">coronals</span>)
-<span class="no">avg_trajs</span> <span class="kw">&lt;-</span> <span class="no">coronals</span> <span class="kw">%&gt;%</span>
-  <span class="fu">group_by</span>(<span class="no">vowel</span>, <span class="no">percent</span>) <span class="kw">%&gt;%</span>
-  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">F1</span>, <span class="no">F2</span>), <span class="no">mean</span>)) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>()</pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="kw">coronals</span>)
+<span class="kw">avg_trajs</span> <span class="op">&lt;-</span> <span class="kw">coronals</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span>(<span class="kw">vowel</span>, <span class="kw">percent</span>) <span class="op">%&gt;%</span>
+  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">F1</span>, <span class="kw">F2</span>), <span class="kw">mean</span>)) <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>()
+</pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">## `summarise()` regrouping output by 'vowel' (override with `.groups` argument)</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a></span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="co">## # A tibble: 273 x 4</span></span>
@@ -154,28 +164,36 @@
 <span id="cb7-15"><a href="#cb7-15"></a><span class="co">##  9 LOT        40  633. 1153.</span></span>
 <span id="cb7-16"><a href="#cb7-16"></a><span class="co">## 10 LOT        45  625. 1158.</span></span>
 <span id="cb7-17"><a href="#cb7-17"></a><span class="co">## # … with 263 more rows</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="r"><span class="fu">ggplot</span>(<span class="no">avg_trajs</span>, <span class="fu">aes</span>(<span class="no">F2</span>, <span class="no">F1</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">vowel</span>)) +
-  <span class="fu">geom_path</span>(<span class="fu">aes</span>(<span class="kw">group</span> <span class="kw">=</span> <span class="no">vowel</span>),
-            <span class="kw">arrow</span> <span class="kw">=</span> <span class="fu">arrow</span>(<span class="kw">angle</span> <span class="kw">=</span> <span class="fl">20</span>, <span class="kw">length</span> <span class="kw">=</span> <span class="fu">unit</span>(<span class="fl">0.15</span>, <span class="st">"in"</span>), <span class="kw">type</span> <span class="kw">=</span> <span class="st">"closed"</span>)) +
-  <span class="fu">scale_x_reverse</span>() +
-  <span class="fu">scale_y_reverse</span>()</pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="fu">ggplot</span>(<span class="kw">avg_trajs</span>, <span class="fu">aes</span>(<span class="kw">F2</span>, <span class="kw">F1</span>, color = <span class="kw">vowel</span>)) <span class="op">+</span> 
+  <span class="fu">geom_path</span>(<span class="fu">aes</span>(group = <span class="kw">vowel</span>), 
+            arrow = <span class="fu">arrow</span>(angle = <span class="fl">20</span>, length = <span class="fu">unit</span>(<span class="fl">0.15</span>, <span class="st">"in"</span>), type = <span class="st">"closed"</span>)) <span class="op">+</span> 
+  <span class="fu">scale_x_reverse</span>() <span class="op">+</span> 
+  <span class="fu">scale_y_reverse</span>()
+</pre></div>
 <p><img src="reference/figures/coronals%20plot-1.png"><!-- --></p>
 <p><code>midpoints</code> is pretty clean.</p>
-<div class="sourceCode" id="cb9"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">midpoints</span>)
-<span class="fu">ggplot</span>(<span class="no">midpoints</span>, <span class="fu">aes</span>(<span class="no">F2</span>, <span class="no">F1</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">vowel</span>)) +
-  <span class="fu">geom_point</span>() +
-  <span class="fu">scale_x_reverse</span>() +
-  <span class="fu">scale_y_reverse</span>()</pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="kw">midpoints</span>)
+<span class="fu">ggplot</span>(<span class="kw">midpoints</span>, <span class="fu">aes</span>(<span class="kw">F2</span>, <span class="kw">F1</span>, color = <span class="kw">vowel</span>)) <span class="op">+</span> 
+  <span class="fu">geom_point</span>() <span class="op">+</span> 
+  <span class="fu">scale_x_reverse</span>() <span class="op">+</span> 
+  <span class="fu">scale_y_reverse</span>()
+</pre></div>
 <p><img src="reference/figures/midpoints%20plot-1.png"><!-- --></p>
 <p><code>mouth</code> shows pretty good trajectories.</p>
-<div class="sourceCode" id="cb10"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">mouth</span>)
-<span class="fu">ggplot</span>(<span class="no">mouth</span>, <span class="fu">aes</span>(<span class="no">percent</span>, <span class="no">hz</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">formant</span>)) +
-  <span class="fu">geom_path</span>(<span class="fu">aes</span>(<span class="kw">group</span> <span class="kw">=</span> <span class="no">traj_id</span>))</pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="kw">mouth</span>)
+<span class="fu">ggplot</span>(<span class="kw">mouth</span>, <span class="fu">aes</span>(<span class="kw">percent</span>, <span class="kw">hz</span>, color = <span class="kw">formant</span>)) <span class="op">+</span> 
+  <span class="fu">geom_path</span>(<span class="fu">aes</span>(group = <span class="kw">traj_id</span>))
+</pre></div>
 <p><img src="reference/figures/mouth%20plot-1.png"><!-- --></p>
 <p><code>mouth_lite</code> is just smaller.</p>
-<div class="sourceCode" id="cb11"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">mouth_lite</span>)
-<span class="fu">ggplot</span>(<span class="no">mouth_lite</span>, <span class="fu">aes</span>(<span class="no">percent</span>, <span class="no">hz</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">formant</span>)) +
-  <span class="fu">geom_path</span>(<span class="fu">aes</span>(<span class="kw">group</span> <span class="kw">=</span> <span class="no">traj_id</span>))</pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="kw">mouth_lite</span>)
+<span class="fu">ggplot</span>(<span class="kw">mouth_lite</span>, <span class="fu">aes</span>(<span class="kw">percent</span>, <span class="kw">hz</span>, color = <span class="kw">formant</span>)) <span class="op">+</span> 
+  <span class="fu">geom_path</span>(<span class="fu">aes</span>(group = <span class="kw">traj_id</span>))
+</pre></div>
 <p><img src="reference/figures/mouth_lite%20plot-1.png"><!-- --></p>
 </div>
 </div>
@@ -212,7 +230,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
