@@ -93,7 +93,7 @@
 <div id="contents" class="section level2">
 <h2 class="hasAnchor">
 <a href="#contents" class="anchor"></a>Contents</h2>
-<p>Currently, there are five datasets contained in <code>joeysvowels</code>:</p>
+<p>Currently, there are six datasets contained in <code>joeysvowels</code>:</p>
 <ul>
 <li><p><code>darla</code> is one that was prepared using pretty standard methods, using the DARLA web interface to automatically transcribe, force-align, and extract formants from the audio. The audio was me reading 300 prepared sentences. It’s a bit of a noisy dataset, so it’s a good example of working with real data. It is also very close to the format that FAVE exports its data, so any examples that use <code>darla</code> can be easily modified to another FAVE-produced spreadsheet.</p></li>
 <li>
@@ -104,6 +104,7 @@
 <li><p><code>mouth_lite</code> is a subset of <code>mouth</code> and trims away most of the columns and only contains 10 tokens.</p></li>
 </ul>
 </li>
+<li><p><code>idahoans</code> contains formant measurements from 11 individuals from the state of Idaho in the US. This is great for testing normalization functions.</p></li>
 </ul>
 </div>
 <div id="example" class="section level2">
@@ -177,6 +178,13 @@
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">mouth_lite</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="no">percent</span>, <span class="no">hz</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">formant</span>)) +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_path</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">group</span> <span class="kw">=</span> <span class="no">traj_id</span>))</pre></div>
 <p><img src="reference/figures/mouth_lite%20plot-1.png"><!-- --></p>
+<div class="sourceCode" id="cb12"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">idahoans</span>)
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">idahoans</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="no">F2</span>, <span class="no">F1</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">vowel</span>)) +
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>() +
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_reverse</a></span>() +
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_reverse</a></span>() +
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(~<span class="no">speaker</span>)</pre></div>
+<p><img src="reference/figures/idahoans%20plot-1.png"><!-- --></p>
 </div>
 </div>
   </div>

@@ -30,7 +30,7 @@ library(joeysvowels)
 
 ## Contents
 
-Currently, there are five datasets contained in `joeysvowels`:
+Currently, there are six datasets contained in `joeysvowels`:
 
   - `darla` is one that was prepared using pretty standard methods,
     using the DARLA web interface to automatically transcribe,
@@ -59,6 +59,10 @@ Currently, there are five datasets contained in `joeysvowels`:
       - `mouth_lite` is a subset of `mouth` and trims away most of the
         columns and only contains 10 tokens.
 
+  - `idahoans` contains formant measurements from 11 individuals from
+    the state of Idaho in the US. This is great for testing
+    normalization functions.
+
 ## Example
 
 You can access the datasets using `data()`. I’ll briefly visualize the
@@ -70,17 +74,6 @@ library(ggplot2)
 library(tidyr)
 library(dplyr)
 ```
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
 
 The `darla` dataset is messy.
 
@@ -164,3 +157,14 @@ ggplot(mouth_lite, aes(percent, hz, color = formant)) +
 ```
 
 ![](man/figures/mouth_lite%20plot-1.png)<!-- -->
+
+``` r
+data(idahoans)
+ggplot(idahoans, aes(F2, F1, color = vowel)) + 
+  geom_point() + 
+  scale_x_reverse() + 
+  scale_y_reverse() + 
+  facet_wrap(~speaker)
+```
+
+![](man/figures/idahoans%20plot-1.png)<!-- -->
