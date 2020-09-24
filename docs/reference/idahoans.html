@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • joeysvowels</title>
+<title>Vowel formants from 11 Idahoans — idahoans • joeysvowels</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,14 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Vowel formants from 11 Idahoans — idahoans" />
+<meta property="og:description" content="A dataset containing information on 1,210 vowel tokens produced by 11 people
+from the state of Idaho in the United States. For each speaker, there are
+ten tokens per canonical monophthong, randomly selected from a larger
+dataset. Vowels are not preceding sonorants and not following coronal
+consonants. For each token, F1, F2, F3, and F4 were extracted at the midpoint
+of each vowel using a Praat script. The individuals consented to their data
+being used in this way." />
 
 
 
@@ -68,7 +75,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -118,72 +125,43 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Vowel formants from 11 Idahoans</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JoeyStanley/joeysvowels/blob/master/R/idahoans.R'><code>R/idahoans.R</code></a></small>
+    <div class="hidden name"><code>idahoans.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>A dataset containing information on 1,210 vowel tokens produced by 11 people
+from the state of Idaho in the United States. For each speaker, there are
+ten tokens per canonical monophthong, randomly selected from a larger
+dataset. Vowels are not preceding sonorants and not following coronal
+consonants. For each token, F1, F2, F3, and F4 were extracted at the midpoint
+of each vowel using a Praat script. The individuals consented to their data
+being used in this way.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='no'>idahoans</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="coronals.html">coronals</a></code> </p>
-        </td>
-        <td><p>Joey's pre- and post-coronal formants</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="darla.html">darla</a></code> </p>
-        </td>
-        <td><p>Vowel formants produced by DARLA and FAVE</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="idahoans.html">idahoans</a></code> </p>
-        </td>
-        <td><p>Vowel formants from 11 Idahoans</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="midpoints.html">midpoints</a></code> </p>
-        </td>
-        <td><p>Formant measurements from 564 vowel midpoints</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mouth.html">mouth</a></code> </p>
-        </td>
-        <td><p>Formant measurements from 81 tokens of the MOUTH vowel</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mouth_lite.html">mouth_lite</a></code> </p>
-        </td>
-        <td><p>Formant measurements from 10 tokens of the MOUTH vowel</p></td>
-      </tr>
-    </tbody>
-    </table>
+
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A dataframe with 1,210 rows and 7 variables.</p><dl'>
+<dt>speaker</dt><dd><p>a unique identifier per speaker</p></dd>
+<dt>sex</dt><dd><p>biological sex of the speakers</p></dd>
+<dt>vowel</dt><dd><p>vowel, in ARPABET. This is a handy transcription system since
+all General American English vowels are represented using two-letter codes.</p></dd>
+<dt>F1, F2, F3, F4</dt><dd><p>vowel formant measurements, in Hz</p></dd>
+
+</dl>
+
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This dataset is useful for testing and demonstrating vowel normalization
+functions.</p>
+
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
