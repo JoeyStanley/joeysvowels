@@ -22,7 +22,7 @@ You can install `joeysvowels` through GitHub:
 remotes::install_github("joeystanley/joeysvowels")
 ```
 
-You can then load the package like noromally:
+You can then load the package like normally:
 
 ``` r
 library(joeysvowels)

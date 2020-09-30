@@ -87,7 +87,7 @@
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install <code>joeysvowels</code> through GitHub:</p>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"joeystanley/joeysvowels"</span>)</pre></div>
-<p>You can then load the package like noromally:</p>
+<p>You can then load the package like normally:</p>
 <div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">joeysvowels</span>)</pre></div>
 </div>
 <div id="contents" class="section level2">
@@ -115,70 +115,60 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tidyr</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)</pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">## </span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="co">## Attaching package: 'dplyr'</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co">## The following objects are masked from 'package:stats':</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co">## </span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="co">##     filter, lag</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="co">## The following objects are masked from 'package:base':</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="co">## </span></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="co">##     intersect, setdiff, setequal, union</span></span></code></pre></div>
 <p>The <code>darla</code> dataset is messy.</p>
-<div class="sourceCode" id="cb5"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">darla</span>)
+<div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">darla</span>)
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">darla</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="no">F2</span>, <span class="no">F1</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">vowel</span>)) +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>() +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_reverse</a></span>() +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_reverse</a></span>()</pre></div>
 <p><img src="reference/figures/darla%20plot-1.png"><!-- --></p>
 <p>The <code>coronals</code> trajectories show clear influence from the surrounding consonants.</p>
-<div class="sourceCode" id="cb6"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">coronals</span>)
+<div class="sourceCode" id="cb5"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">coronals</span>)
 <span class="no">avg_trajs</span> <span class="kw">&lt;-</span> <span class="no">coronals</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">vowel</span>, <span class="no">percent</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">F1</span>, <span class="no">F2</span>), <span class="no">mean</span>)) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>()</pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">## `summarise()` regrouping output by 'vowel' (override with `.groups` argument)</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="co">## # A tibble: 273 x 4</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="co">## # Groups:   vowel [13]</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="co">##    vowel percent    F1    F2</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="co">##    &lt;fct&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="co">##  1 LOT         0  454. 1616.</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="co">##  2 LOT         5  592. 1346.</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="co">##  3 LOT        10  648. 1283.</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="co">##  4 LOT        15  651. 1238.</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="co">##  5 LOT        20  661. 1178.</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a><span class="co">##  6 LOT        25  651. 1176.</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a><span class="co">##  7 LOT        30  636. 1152.</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a><span class="co">##  8 LOT        35  630. 1148.</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a><span class="co">##  9 LOT        40  633. 1153.</span></span>
-<span id="cb7-16"><a href="#cb7-16"></a><span class="co">## 10 LOT        45  625. 1158.</span></span>
-<span id="cb7-17"><a href="#cb7-17"></a><span class="co">## # … with 263 more rows</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">avg_trajs</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="no">F2</span>, <span class="no">F1</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">vowel</span>)) +
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">## `summarise()` regrouping output by 'vowel' (override with `.groups` argument)</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co">## # A tibble: 273 x 4</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">## # Groups:   vowel [13]</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">##    vowel percent    F1    F2</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co">##    &lt;fct&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co">##  1 LOT         0  454. 1616.</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="co">##  2 LOT         5  592. 1346.</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co">##  3 LOT        10  648. 1283.</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="co">##  4 LOT        15  651. 1238.</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co">##  5 LOT        20  661. 1178.</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">##  6 LOT        25  651. 1176.</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">##  7 LOT        30  636. 1152.</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">##  8 LOT        35  630. 1148.</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="co">##  9 LOT        40  633. 1153.</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="co">## 10 LOT        45  625. 1158.</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="co">## # … with 263 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">avg_trajs</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="no">F2</span>, <span class="no">F1</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">vowel</span>)) +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_path</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">group</span> <span class="kw">=</span> <span class="no">vowel</span>),
             <span class="kw">arrow</span> <span class="kw">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/reexports.html">arrow</a></span>(<span class="kw">angle</span> <span class="kw">=</span> <span class="fl">20</span>, <span class="kw">length</span> <span class="kw">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/reexports.html">unit</a></span>(<span class="fl">0.15</span>, <span class="st">"in"</span>), <span class="kw">type</span> <span class="kw">=</span> <span class="st">"closed"</span>)) +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_reverse</a></span>() +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_reverse</a></span>()</pre></div>
 <p><img src="reference/figures/coronals%20plot-1.png"><!-- --></p>
 <p><code>midpoints</code> is pretty clean.</p>
-<div class="sourceCode" id="cb9"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">midpoints</span>)
+<div class="sourceCode" id="cb8"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">midpoints</span>)
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">midpoints</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="no">F2</span>, <span class="no">F1</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">vowel</span>)) +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>() +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_reverse</a></span>() +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_reverse</a></span>()</pre></div>
 <p><img src="reference/figures/midpoints%20plot-1.png"><!-- --></p>
 <p><code>mouth</code> shows pretty good trajectories.</p>
-<div class="sourceCode" id="cb10"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">mouth</span>)
+<div class="sourceCode" id="cb9"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">mouth</span>)
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">mouth</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="no">percent</span>, <span class="no">hz</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">formant</span>)) +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_path</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">group</span> <span class="kw">=</span> <span class="no">traj_id</span>))</pre></div>
 <p><img src="reference/figures/mouth%20plot-1.png"><!-- --></p>
 <p><code>mouth_lite</code> is just smaller.</p>
-<div class="sourceCode" id="cb11"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">mouth_lite</span>)
+<div class="sourceCode" id="cb10"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">mouth_lite</span>)
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">mouth_lite</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="no">percent</span>, <span class="no">hz</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">formant</span>)) +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_path</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">group</span> <span class="kw">=</span> <span class="no">traj_id</span>))</pre></div>
 <p><img src="reference/figures/mouth_lite%20plot-1.png"><!-- --></p>
-<div class="sourceCode" id="cb12"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">idahoans</span>)
+<div class="sourceCode" id="cb11"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">idahoans</span>)
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">idahoans</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="no">F2</span>, <span class="no">F1</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">vowel</span>)) +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>() +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_reverse</a></span>() +
